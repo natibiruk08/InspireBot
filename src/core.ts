@@ -1,5 +1,6 @@
 import { Telegraf } from "telegraf";
 import dotenv from "dotenv";
+import { printQuote } from "./quotes";
 
 dotenv.config();
 
@@ -25,8 +26,10 @@ bot.command("quit", async (ctx) => {
   await ctx.leaveChat();
 });
 
-bot.command("quote", (ctx) => {
-  ctx.reply("Random quote");
+bot.command("quote", async (ctx) => {
+  const quote = printQuote();
+
+  ctx.reply(quote);
 });
 
 export default bot;
